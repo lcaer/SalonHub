@@ -20,8 +20,8 @@ BEGIN
         END IF;
 
         UPDATE ATENDIMENTO
-        SET DATA_HORA_FIM = COALESCE(DATA_HORA_FIM, DATA_HORA_INICIO) //
-                            + NUMTODSINTERVAL(v_delta, 'MINUTE'),
+        SET DATA_HORA_FIM = COALESCE(DATA_HORA_FIM, DATA_HORA_INICIO) --retorna o primeiro valor da sequência que não for nulo
+                            + NUMTODSINTERVAL(v_delta, 'MINUTE'), --incrementar, em minutos, o horario
             ATUALIZADO_EM = CURRENT_TIMESTAMP
         WHERE ID_ATEND = :NEW.ID_ATEND;
     END IF;
